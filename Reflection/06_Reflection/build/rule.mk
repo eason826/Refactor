@@ -23,7 +23,7 @@ endef
 
 define make-so
 $1:$2
-	$(CC) -fPIC -shared -o $$@ $2 -Wl,-rpath,./lib -L./lib $3
+	$(CC) -fPIC -shared -o $$@ $2 -Wl,-rpath,./lib -L./lib $3 $4
 endef
 
 all: gen $(LIBNAME) $(APPNAME)
@@ -36,7 +36,7 @@ gen:
 $(foreach d,$(BBDIR),\
 	$(eval $(call make-so,$(addsuffix .so,$(addprefix $(LIB_DIR)/lib,$(notdir $(d)))),\
 	$(addprefix $(OBJS_DIR)/,\
-	$(patsubst %.cpp,%.o,$(notdir $(wildcard $(d)/*.cpp)))),-lIni)))
+	$(patsubst %.cpp,%.o,$(notdir $(wildcard $(d)/*.cpp)))),-lIni,-lClassRegister)))
 $(foreach d,$(SRCS_DIR),\
 	$(eval $(call make-obj,$(OBJS_DIR)/%.o,$(d)/%.cpp)))
 
