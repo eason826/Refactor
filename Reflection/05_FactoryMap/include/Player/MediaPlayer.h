@@ -25,5 +25,14 @@ public:
 	static MediaPlayer* CreatePlayer(const char* PlayerType);
 };
 
+#define REGISTER(className)						\
+    MediaPlayer* className::factory(){                              	\
+        return new className;                                           \
+    }                                                                   \
+    void className::Register(){						\
+        RegisterPlayer(#className, factory);				\
+    }
+
+
 #endif
 

@@ -10,12 +10,4 @@ GstreamPlayer::~GstreamPlayer()
 	printf("------------%s Destruct----------\n",__func__);
 }
 
-MediaPlayer* GstreamPlayer::factory()
-{
-	return new GstreamPlayer();
-}
-
-void GstreamPlayer::Register()
-{
-	RegisterPlayer("Gstream", factory);
-}
+REGISTER(GstreamPlayer);
