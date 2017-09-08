@@ -10,9 +10,10 @@ Manager::~Manager()
 
 }
 
-PlayerMgr::PlayerMgr(MediaPlayer* p)
+PlayerMgr::PlayerMgr(MediaPlayer* p1,BrowserHandle *p2)
 {
-	m_player = p;
+	m_player = p1;
+	m_browser = p2;
 }
 
 PlayerMgr::~PlayerMgr()
@@ -21,5 +22,6 @@ PlayerMgr::~PlayerMgr()
 
 void PlayerMgr::Play()
 {
+	m_browser->GetItem();
 	m_player->Play();
 }

@@ -2,7 +2,7 @@
 include build/linux_host.mk
 #include build/imx.mk
 
-INCLUDES=  -I./include/Player
+INCLUDES=  -I./include/Player -I./include/Browser
 LIBS:=
 
 DEFINES= $(INCLUDES) $(DEFS)
