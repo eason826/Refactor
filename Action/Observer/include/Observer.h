@@ -15,34 +15,25 @@ public:
 	virtual void PrintInfo() = 0;
 protected:
 	Observer();
+	string _name;
 	State _st;
 private:
 };
 
-class ObserverA:public Observer
-{
-public:
-	virtual Blog* GetBlog();
-	ObserverA(Blog* sub);
-	virtual ~ObserverA();
-	void Update(Blog* sub);
-	void PrintInfo();
-protected:
-private:
-	Blog* _sub;
+#define REGISTER(classname)\
+class classname:public Observer \
+{\
+public:\
+	virtual Blog* GetBlog(){return _sub;}\
+	classname(string name,Blog* sub){_sub = sub;_name = name;_sub->Attach(this);}\
+	virtual ~classname(){_sub->Detach(this);if(_sub)delete _sub;}\
+	void PrintInfo(){cout<<"["<<#classname<<"]"<<_name<<" Get Notify Message:"<<_sub->GetState()<<endl;}\
+	void Update(Blog* sub){_st = sub->GetState();PrintInfo();}\
+private:\
+	Blog* _sub;\
 };
 
-class ObserverB:public Observer
-{
-public:
-	virtual Blog* GetBlog();
-	ObserverB(Blog* sub);
-	virtual ~ObserverB();
-	void Update(Blog* sub);
-	void PrintInfo();
-protected:
-private:
-	Blog* _sub;
-};
+REGISTER(NBAObserver);
+REGISTER(StockObserver);
 
 #endif //~_OBSERVER_H_
