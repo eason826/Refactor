@@ -3,6 +3,8 @@
 
 #include "Blog.h"
 #include <string>
+#include <iostream>
+#include <list>
 
 using namespace std;
 typedef string State;
@@ -10,11 +12,11 @@ typedef string State;
 class Observer
 {
 public:
-	virtual ~Observer();
+	virtual ~Observer(){}
 	virtual void Update(Blog* sub) = 0;
 	virtual void PrintInfo() = 0;
 protected:
-	Observer();
+	Observer(){_st = '\0';}
 	string _name;
 	State _st;
 private:

@@ -1,10 +1,5 @@
 #include "Blog.h"
 #include "Observer.h"
-#include <iostream>
-#include <list>
-
-using namespace std;
-typedef string state;
 
 Blog::Blog()
 { 
