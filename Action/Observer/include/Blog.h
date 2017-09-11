@@ -27,7 +27,7 @@ private:
 class BlogCSDN:public Blog
 {
 public:
-	BlogCSDN();
+	BlogCSDN(State st);
 	~BlogCSDN();
 	State GetState();
 	void SetState(const State& st);

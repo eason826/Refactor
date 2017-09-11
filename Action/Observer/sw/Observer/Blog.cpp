@@ -3,11 +3,14 @@
 
 Blog::Blog()
 { 
-	//在模板的使用之前一定要new，创建
 	_obvs = new list<Observer*>;
 }
+
 Blog::~Blog()
-{}
+{
+
+}
+
 void Blog::Attach(Observer* obv)
 {
 	_obvs->push_front(obv);
@@ -22,21 +25,27 @@ void Blog::Notify()
 	list<Observer*>::iterator it;
 	it = _obvs->begin();
 	for (;it != _obvs->end();it++)
-	{ //关于模板和iterator的用法
+	{
 		(*it)->Update(this);
 	}
 }
 
-BlogCSDN::BlogCSDN()
+BlogCSDN::BlogCSDN(State st)
 {
-	_st = '\0';
+	_st = st;
 }
+
 BlogCSDN::~BlogCSDN()
-{ }
+{ 
+
+}
+
 State BlogCSDN::GetState()
 {
 	return _st;
 }
+
 void BlogCSDN::SetState(const State& st)
-{ _st = st;
+{ 
+	_st = st;
 }
