@@ -29,7 +29,7 @@ public:\
 	virtual Blog* GetBlog(){return _sub;}\
 	classname(string name,Blog* sub){_sub = sub;_name = name;_sub->Attach(this);}\
 	virtual ~classname(){_sub->Detach(this);if(_sub)delete _sub;}\
-	void PrintInfo(){cout<<"["<<#classname<<"]"<<_name<<" Get Notify Message:"<<_sub->GetState()<<endl;}\
+	void PrintInfo(){cout<<"["<<#classname<<"]"<<_name<<" get Msg:"<<_sub->GetState()<<endl;}\
 	void Update(Blog* sub){_st = sub->GetState();PrintInfo();}\
 private:\
 	Blog* _sub;\
