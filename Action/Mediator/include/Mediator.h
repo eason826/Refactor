@@ -2,6 +2,7 @@
 #define MEDIATOR_H_H
 #include <string>
 #include <iostream>
+#include <list>
 using namespace std;
 
 class Mediator;
@@ -18,24 +19,23 @@ class Mediator
 {
 public:
 	virtual void Send(string message, Person *person) {}
-	virtual void SetA(Person *A) {}
-	virtual void SetB(Person *B) {}
+	virtual void Add(Person *p){}
 };
 class HouseMediator : public Mediator
 {
 private:
-	Person *m_A;
-	Person *m_B;
+	list<Person*>m_list;
 public:
-	HouseMediator(): m_A(0), m_B(0) {}
-	void SetA(Person *A) { m_A = A; }
-	void SetB(Person *B) { m_B = B; }
+	HouseMediator(){}
+	void Add(Person *p){m_list.push_back(p);}
 	void Send(string message, Person *person) 
 	{
-		if(person == m_A)
-			m_B->GetMessage(message);
-		else
-			m_A->GetMessage(message);
+		list<Person *>::iterator iter=m_list.begin();
+        	for(; iter != m_list.end(); iter++)
+		{
+			if(*iter != person)
+			(*iter)->GetMessage(message);
+		}
 	}
 };
 #define DECLARE(classname)\
