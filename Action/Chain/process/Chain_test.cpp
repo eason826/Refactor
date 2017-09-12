@@ -2,11 +2,9 @@
 
 int main(int argc,char* argv[])
 {
-	ProcMan* manager = new Manager("manager");
-	ProcMan* chief = new Chief("cheif");
-	ProcMan* director = new Director("director");
-	manager->SetSuccessor(chief);
-	chief->SetSuccessor(director);
+	ProcMan* director = new Director("director",NULL);
+	ProcMan* chief = new Chief("chief",director);
+	ProcMan* manager = new Manager("manager",chief);
 	manager->Process();
 	return 0;
 }

@@ -13,8 +13,7 @@ public:
 	ProcMan* GetSuccessor(){return _succ;}
 	string GetSuccessorName(){return _name;}
 protected:
-	ProcMan(string name){_name = name;_succ = NULL;}
-	ProcMan(ProcMan* succ){_succ = succ;}
+	ProcMan(string name,ProcMan* succ){_name = name;_succ = succ;}
 private:
 	ProcMan* _succ;
 	string _name;
@@ -24,8 +23,7 @@ private:
 class classname:public ProcMan\
 {\
 public:\
-	classname(string name):ProcMan(name){}\
-	classname(ProcMan* succ):ProcMan(succ){}\
+	classname(string name,ProcMan* succ):ProcMan(name,succ){}\
 	void Process()\
 	{\
 		ProcMan *p = this->GetSuccessor();\
