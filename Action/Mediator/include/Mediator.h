@@ -11,9 +11,8 @@ class Person
 protected:
 	Mediator *m_mediator;
 public:
-	virtual void SetMediator(Mediator *mediator){}
-	virtual void SendMessage(string message) {}
-	virtual void GetMessage(string message) {}
+	virtual void SendMsg(string message) {}
+	virtual void GetMsg(string message) {}
 };
 class Mediator
 {
@@ -34,7 +33,7 @@ public:
         	for(; iter != m_list.end(); iter++)
 		{
 			if(*iter != person)
-			(*iter)->GetMessage(message);
+			(*iter)->GetMsg(message);
 		}
 	}
 };
@@ -42,9 +41,9 @@ public:
 class classname: public Person\
 {\
 public:\
-	void SetMediator(Mediator *mediator) { m_mediator = mediator; }\
-	void SendMessage(string message) { m_mediator->Send(message, this); }\
-	void GetMessage(string message) { cout<<#classname<<" getMessage:"<<message; }\
+	classname(Mediator *mediator){ m_mediator = mediator; }\
+	void SendMsg(string message) { m_mediator->Send(message, this); }\
+	void GetMsg(string message) { cout<<#classname<<" getMessage:"<<message; }\
 };\
 
 DECLARE(Renter)
